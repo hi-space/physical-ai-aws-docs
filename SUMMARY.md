@@ -6,11 +6,9 @@
 
 ## Overview
 
-* [Physical AI란?](overview/physical-ai.md)
-* [왜 지금 Physical AI인가?](overview/physical-ai-1.md)
-* [Physical AI 구현에 필요한 기술](overview/physical-ai-2.md)
-* [Physical AI의 실제 산업 적용 사례](overview/physical-ai-3.md)
-* [왜 AWS에서 Physical AI를 할까?](overview/aws-physical-ai.md)
+* [Physical AI란?](overview/physical-ai/README.md)
+  * [실제 산업 적용 사례](overview/physical-ai/undefined.md)
+* [Physical AI 구현을 위한 기술](overview/physical-ai-1.md)
 * [TBD](overview/tbd/README.md)
   * [1. 데이터 (Data)](overview/tbd/1.-data/README.md)
     * [로봇 데이터 수집 파이프라인](overview/tbd/1.-data/undefined.md)
@@ -34,17 +32,24 @@
   * [2. Isaac Sim / Isaac Lab 환경 확인](physical-ai-on-aws-guide/nvidia-isaac-lab-on-aws/2.-isaac-sim-isaac-lab.md)
   * [3. AWS Batch를 활용한 대규모 학습](physical-ai-on-aws-guide/nvidia-isaac-lab-on-aws/3.-aws-batch.md)
   * [4. IsaacSim에서 학습된 모델 로드](physical-ai-on-aws-guide/nvidia-isaac-lab-on-aws/4.-isaacsim.md)
+* [NVIDIA Cosmos Predict 2.5 배포](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/README.md)
+  * [Cosmos NIM + EKS](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/cosmos-nim-+-eks.md)
+  * [AWS Batch + EC2](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/aws-batch-+-ec2.md)
+  * [SageMaker Async Endpoint](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/sagemaker-async-endpoint.md)
 
 ## Robot Foundation Model
 
 * [World Foundation Model](robot-foundation-model/world-foundation-model/README.md)
   * [NVIDIA Cosmos World Foundation Model](robot-foundation-model/world-foundation-model/nvidia-cosmos-world-foundation-model.md)
-* [Robot Foundation Model](robot-foundation-model/robot-foundation-model.md)
-* [VLA (Vision-Language-Action) 모델](robot-foundation-model/vla-vision-language-action/README.md)
-  * [DeepMind RT-2](robot-foundation-model/vla-vision-language-action/deepmind-rt-2.md)
-  * [OpenVLA](robot-foundation-model/vla-vision-language-action/openvla.md)
-  * [Gemini Robotics](robot-foundation-model/vla-vision-language-action/gemini-robotics.md)
-  * [NVIDIA GR00T N1](robot-foundation-model/vla-vision-language-action/nvidia-gr00t-n1.md)
+* [Robot Foundation Model](robot-foundation-model/robot-foundation-model/README.md)
+  * [Reasoning VLM (Vision-Language Model)](robot-foundation-model/robot-foundation-model/reasoning-vlm-vision-language-model/README.md)
+    * [Cosmos-Reason 1](robot-foundation-model/robot-foundation-model/reasoning-vlm-vision-language-model/cosmos-reason-1.md)
+  * [VLA (Vision-Language-Action)](robot-foundation-model/robot-foundation-model/vla-vision-language-action/README.md)
+    * [DeepMind RT-2](robot-foundation-model/robot-foundation-model/vla-vision-language-action/deepmind-rt-2.md)
+    * [OpenVLA](robot-foundation-model/robot-foundation-model/vla-vision-language-action/openvla.md)
+    * [Gemini Robotics](robot-foundation-model/robot-foundation-model/vla-vision-language-action/gemini-robotics.md)
+    * [NVIDIA GR00T N1](robot-foundation-model/robot-foundation-model/vla-vision-language-action/nvidia-gr00t-n1.md)
+    * [π ∗ 0.6 : a VLA That Learns From Experience](robot-foundation-model/robot-foundation-model/vla-vision-language-action/p-0.6-a-vla-that-learns-from-experience.md)
 
 ## Architecture & Best Practice
 

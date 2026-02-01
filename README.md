@@ -6,12 +6,12 @@ icon: user-robot
 # Physical AI on AWS
 
 {% hint style="danger" %}
-본 Gitbook은 저자의 개인적인 의견을 바탕으로 작성된 가이드로, 재직 중인 회사의 공식 문서와 입장을 대변하지 않습니다.
+본 Gitbook은 저자의 개인적인 의견을 바탕으로 작성된 가이드로, 재직 중인 회사의 입장 및 공식문서를 대변하지 않습니다.
 {% endhint %}
 
 ### 이 가이드에 대하여
 
-Physical AI는 단일 "모델"이 아닌 **엔드투엔드 시스템**입니다. 이 가이드는 데이터 수집부터 학습, 시뮬레이션, 현실 전이(Sim2Real), 배포, 자율 조율(Agentic Orchestration)까지 전 과정을 다룹니다.
+Physical AI는 단일 AI 모델이 아닌 **End-to-End 시스템**입니다. 이 가이드는 데이터 수집부터 학습, 시뮬레이션, 현실 전이(Sim2Real), 배포, 자율 조율(Agentic Orchestration)까지 전 과정을 다룹니다.
 
 최근 Physical AI가 주목받고 있지만, 여러 기술의 집합체이다 보니 전체 기술 요소를 한눈에 파악하기가 쉽지 않습니다. 이 가이드는 Physical AI의 전반적인 기술 요소를 이해하고, AWS 클라우드에서 실용적으로 구현하는 방법을 전달하기 위해 작성되었습니다.
 
