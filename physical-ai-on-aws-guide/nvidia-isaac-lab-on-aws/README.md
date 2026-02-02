@@ -1,5 +1,9 @@
 ---
 description: NVIDIA Isaac Lab으로 로봇 학습하기
+metaLinks:
+  alternates:
+    - >-
+      https://app.gitbook.com/s/eiiMMZMGOJGOQZP7MGcd/physical-ai-on-aws-guide/nvidia-isaac-lab-on-aws
 ---
 
 # NVIDIA Isaac Lab on AWS
@@ -18,7 +22,7 @@ description: NVIDIA Isaac Lab으로 로봇 학습하기
 AWS Batch에 NVIDIA Isaac Lab을 배포하는 전체 아키텍처 입니다.
 
 * NVIDIA Isaac Sim 도커 이미지와 Isaac Lab Github 레포지토리로 Custom 도커 컨테이터를 빌드하고 테스트합니다. 이 작업은 Amazon DCV가 설치된 EC2 인스턴스에서 원격 데스크톱으로 진행할 수 있습니다. 검증된 컨테이너는 Amazon ECR에 업로드됩니다.
-* [AWS Batch 멀티노드 병렬 작업 ](https://docs.aws.amazon.com/batch/latest/userguide/multi-node-parallel-jobs.html)[(MNP, Multi-node parallel jobs)](https://docs.aws.amazon.com/batch/latest/userguide/multi-node-parallel-jobs.html)을 시작하면, 필요한 노드 수만큼 컴퓨팅과 네트워킹 리소스가 자동으로 프로비저닝됩니다. NVIDIA Isaac Lab이 노드 간 통신을 조율하여 분산 학습을 진행합니다.
+* [AWS Batch 멀티노드 병렬 작업 (MNP, Multi-node parallel jobs)](https://docs.aws.amazon.com/batch/latest/userguide/multi-node-parallel-jobs.html)을 시작하면, 필요한 노드 수만큼 컴퓨팅과 네트워킹 리소스가 자동으로 프로비저닝됩니다. NVIDIA Isaac Lab이 노드 간 통신을 조율하여 분산 학습을 진행합니다.
 * [Amazon EFS](https://docs.aws.amazon.com/ko_kr/efs/latest/ug/whatisefs.html)는 배치 작업 실행 간 데이터를 영구 보관합니다. 메인 노드가 MNP 클러스터 전체의 학습 결과를 수집하고, 학습된 모델의 체크포인트와 로그를 EFS에 저장합니다.
 * 저장된 데이터는 추후 다른 AWS Batch 작업이나 EC2 인스턴스에서 분석 및 평가에 활용할 수 있습니다.
 
@@ -39,8 +43,6 @@ AWS CloudFormation 템플릿으로 환경을 자동으로 구성합니다. Docke
 [**4. 모델 테스트**](4.-isaacsim.md)
 
 EC2 인스턴스에서 학습된 모델을 실행하여 성능을 확인합니다. 개선점을 파악하고 다시 학습하는 과정을 AWS Batch로 빠르게 반복하여, 새로운 로봇 동작을 신속하게 개발할 수 있습니다.
-
-
 
 ***
 
