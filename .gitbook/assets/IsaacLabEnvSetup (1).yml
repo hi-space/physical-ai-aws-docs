@@ -101,7 +101,7 @@ Mappings:
       Ubuntu2004CPU: ami-0ab9357b9799530ef # focal 20.04 LTS amd64 hvm:ebs-ssd 20221206 hvm
       Ubuntu2004GPU: ami-0d6df9f7aa5522909 # AWS Deep Learning AMI GPU TensorFlow 2.8.0 (Ubuntu 20.04) 20220216
       Ubuntu2204CPU: ami-0032bc62a8ae2d773 # Cloud9Ubuntu-2022-04-28T13-38
-      Ubuntu2204GPU: ami-0ea0307b49409ffa0 # Deep Learning AMI GPU PyTorch ? (Ubuntu 22.04)
+      #Ubuntu2204GPU: TODO # Deep Learning AMI GPU PyTorch ? (Ubuntu 22.04)
     ap-northeast-3:
       Ubuntu1804CPU: ami-0fee715f47bd148b6 # bionic 18.04 LTS amd64 hvm:ebs-ssd 20221201
       Ubuntu1804GPU: ami-03843c70f69c6305c # IsaacSim-Ubuntu-18.04-GPU-2022-05-31

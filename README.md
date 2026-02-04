@@ -3,7 +3,7 @@ description: AWS 기반 Physical AI 시스템 구축 및 운영 가이드
 icon: user-robot
 metaLinks:
   alternates:
-    - https://app.gitbook.com/s/eiiMMZMGOJGOQZP7MGcd/introduction/readme
+    - ./
 ---
 
 # Physical AI on AWS
