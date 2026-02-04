@@ -57,6 +57,6 @@
 
 * [End-to-end Architecture](architecture-and-best-practice/end-to-end-architecture.md)
 
-## 참고 자료
+## 참고 자료 <a href="#references" id="references"></a>
 
-* [AWS의 Physical AI 관련 문서](undefined/aws-physical-ai.md)
+* [AWS의 Physical AI 관련 문서](references/aws-physical-ai.md)
