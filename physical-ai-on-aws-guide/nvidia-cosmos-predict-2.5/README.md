@@ -2,9 +2,11 @@
 
 ### 1. 개요
 
-NVIDIA Cosmos Predict는 Physical AI를 위한 World Foundation Model(WFM)로, 텍스트·이미지·비디오 입력으로부터 미래 세계 상태를 비디오 형태로 예측합니다.
+NVIDIA Cosmos Predict는 Physical AI를 위한 World Foundation Model(WFM)로, 텍스트·이미지·비디오 입력으로부터 미래 세계 상태를 비디오 형태로 예측합니다.&#x20;
 
-이 가이드는 Cosmos Predict 2.5를 AWS에 배포하기 위한 두 가지 레퍼런스 아키텍처와 샘플 코드를 제공합니다.
+이 가이드는 [Cosmos Predict 2.5](https://research.nvidia.com/labs/dir/cosmos-predict2.5/)를 AWS에 배포하기 위한 두 가지 레퍼런스 아키텍처와 샘플 코드를 제공합니다.
+
+> Cosmos Predict에 대한 상세 소개는 [nvidia-cosmos-world-foundation-model.md](../../robot-foundation-model/world-foundation-model/nvidia-cosmos-world-foundation-model.md "mention") 논문 리뷰를 확인하세요
 
 ***
 
@@ -12,12 +14,12 @@ NVIDIA Cosmos Predict는 Physical AI를 위한 World Foundation Model(WFM)로, �
 
 AWS에서는 보통 아래 선택 기준에 의거하여 두 가지 방식으로 배포할 수 있습니다.
 
-* 지연 시간 요구사항&#x20;
+* 지연 시간 요구사항
 * 추론 트래픽 패턴(상시/피크/간헐)
 * 비용 제약
 * Physical AI 파이프라인 내 연동 지점(데이터/후처리/학습)
 
-<table data-header-hidden><thead><tr><th width="184">-</th><th>NIM on EKS</th><th>AWS Batch</th><th>SageMaker</th></tr></thead><tbody><tr><td><strong>용도</strong></td><td>실시간 추론 (API 서빙)</td><td>대량 오프라인 배치 처리</td><td>관리형 추론 (실시간/비동기)</td></tr><tr><td><strong>구성</strong></td><td>EKS + NIM + ALB + Karpenter</td><td>Batch + EC2</td><td>SageMaker + ECR + S3</td></tr><tr><td><strong>장점</strong></td><td>저지연, 항시 가용, 자동 스케일링</td><td>Spot으로 60-90% 절감 가능</td><td><strong>Scale-to-0</strong> (비용 0), 완전 관리형</td></tr><tr><td><strong>적합</strong></td><td>인터랙티브 앱, 실시간 서비스</td><td>비실시간 대규모 데이터 생성</td><td>실시간/비동기 추론</td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="184">-</th><th>NIM on EKS</th><th>AWS Batch</th></tr></thead><tbody><tr><td><strong>용도</strong></td><td>실시간 추론 (API 서빙)</td><td>대량 오프라인 배치 처리</td></tr><tr><td><strong>구성</strong></td><td>NVIDIA NIM + EKS</td><td>AWS Batch + EC2</td></tr><tr><td><strong>장점</strong></td><td>저지연, 항시 가용, 자동 스케일링</td><td><ul><li>비용 최적화 (유휴 시간 제거, Spot으로 60-90% 절감 가능)</li><li>탄력적 처리량</li></ul></td></tr><tr><td><strong>적합</strong></td><td>지속적인 실시간 서비스,  프로덕션 환경</td><td>비실시간 대규모 데이터 생성, 간헐적 워크로드</td></tr></tbody></table>
 
 #### [**Option 1: 실시간 추론**](cosmos-nim-+-eks.md)
 
@@ -31,8 +33,9 @@ AWS에서는 보통 아래 선택 기준에 의거하여 두 가지 방식으로
 
 ### References
 
-{% embed url="https://aws.amazon.com/blogs/hpc/running-nvidia-cosmos-world-foundation-models-on-aws/" %}
-
-{% embed url="https://github.com/nvidia-cosmos/cosmos-predict2.5" %}
-
-{% embed url="https://github.com/NVIDIA/nim-deploy" %}
+* [**\[AWS Blog\]** Running NVIDIA Cosmos world foundation models on AWS](https://aws.amazon.com/blogs/hpc/running-nvidia-cosmos-world-foundation-models-on-aws/)
+* [**\[NVIDIA Research\]** Cosmos-Predict2.5](https://research.nvidia.com/labs/dir/cosmos-predict2.5/)
+* [**\[Github\]** nvidia-cosmos/cosmos-predict2.5](https://github.com/nvidia-cosmos/cosmos-predict2.5)
+* [**\[Github\]** NVIDIA/nim-deploy](https://github.com/NVIDIA/nim-deploy)
+* [**\[HuggingFace\]** nvidia/Cosmos-Predict2.5-2B](https://huggingface.co/nvidia/Cosmos-Predict2.5-2B)
+* [**\[HuggingFace\]** nvidia/Cosmos-Predict2.5-14B](https://huggingface.co/nvidia/Cosmos-Predict2.5-14B)

@@ -1,10 +1,12 @@
 # World Foundation Model
 
-World Foundation Model은 Physical AI가 안전하게 상호작용할 수 있는 물리 세계의 디지털 트윈입니다.&#x20;
+World Foundation Model은 물리적 세계의 디지털 트윈으로, Physical AI가 안전하게 학습하고 실험할 수 있는 가상 환경을 제공하는 AI 모델입니다.
 
-**세계의 동작을 예측**하는 모델로, 로봇 관점에서는 “다음 프레임/다음 상태가 어떻게 될까”를 학습합니다. 정책(Policy)과 결합하면 플래닝과 Sim2Real에 도움됩니다.
+**세계의 동작을 예측**하는 모델로, 과거 관찰 데이터 + 현재의 행동/입력을 바탕으로, 미래 세계 상태를 예측합니다. 로봇 관점에서는 “다음 프레임/다음 상태가 어떻게 될까”를 학습합니다. 정책(Policy)과 결합하면 플래닝과 Sim2Real에 도움됩니다.
 
-> **핵심 원칙**: Physical AI는 먼저 디지털로 학습됩니다.
+
+
+
 
 ### WFM이 쓰이는 곳
 
@@ -81,4 +83,9 @@ Physical AI System Architecture
 * 사후학습 데이터셋 크기 대폭 감소 가능
 * "프롬프트-비디오" 쌍으로 학습 가능 (액션 명령, 궤적, 지시사항 등)
 
-####
+
+
+### References
+
+* [**\[NVIDIA Blog\]** Advancing Physical AI with NVIDIA Cosmos World Foundation Model Platform](https://developer.nvidia.com/blog/advancing-physical-ai-with-nvidia-cosmos-world-foundation-model-platform/)
+

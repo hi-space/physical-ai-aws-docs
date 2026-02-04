@@ -1,2 +1,0 @@
-# SageMaker Async Endpoint
-

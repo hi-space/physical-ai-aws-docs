@@ -6,8 +6,9 @@
 
 ## Overview
 
-* [Physical AI란?](overview/physical-ai/README.md)
-  * [실제 산업 적용 사례](overview/physical-ai/undefined.md)
+* [Physical AI란?](overview/physical-ai.md)
+* [실제 산업 적용 사례](overview/undefined.md)
+* [관련 용어 정리](overview/undefined-1.md)
 * [Physical AI 구현을 위한 기술](overview/physical-ai-1.md)
 * [TBD](overview/tbd/README.md)
   * [1. 데이터 (Data)](overview/tbd/1.-data/README.md)
@@ -35,12 +36,13 @@
 * [NVIDIA Cosmos Predict 2.5 배포](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/README.md)
   * [Cosmos NIM + EKS](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/cosmos-nim-+-eks.md)
   * [AWS Batch + EC2](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/aws-batch-+-ec2.md)
-  * [SageMaker Async Endpoint](physical-ai-on-aws-guide/nvidia-cosmos-predict-2.5/sagemaker-async-endpoint.md)
+* [NVIDIA Cosmos Reason-1-7B 배포](physical-ai-on-aws-guide/nvidia-cosmos-reason-1-7b.md)
 
 ## Robot Foundation Model
 
 * [World Foundation Model](robot-foundation-model/world-foundation-model/README.md)
-  * [NVIDIA Cosmos World Foundation Model](robot-foundation-model/world-foundation-model/nvidia-cosmos-world-foundation-model.md)
+  * [Cosmos-Predict1](robot-foundation-model/world-foundation-model/cosmos-predict1.md)
+  * [Cosmos-Predict2.5](robot-foundation-model/world-foundation-model/nvidia-cosmos-world-foundation-model.md)
 * [Robot Foundation Model](robot-foundation-model/robot-foundation-model/README.md)
   * [Reasoning VLM (Vision-Language Model)](robot-foundation-model/robot-foundation-model/reasoning-vlm-vision-language-model/README.md)
     * [Cosmos-Reason 1](robot-foundation-model/robot-foundation-model/reasoning-vlm-vision-language-model/cosmos-reason-1.md)
