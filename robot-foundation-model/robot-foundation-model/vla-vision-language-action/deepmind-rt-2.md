@@ -16,9 +16,9 @@ description: >-
 
 ### 배경: 기존 접근 방식의 한계
 
-**비전-언어 모델(Vision-Language Model, VLM)**. 비전-언어 모델에는 여러 범주가 있으며, 가장 관련성이 높은 두 가지는 다음과 같습니다.&#x20;
+**비전-언어 모델(Vision-Language Model, VLM)**. 비전-언어 모델에는 여러 범주가 있으며, 가장 관련성이 높은 두 가지는 다음과 같습니다.
 
-(1) CLIP과 같은 표현 학습 모델(representation-learning model)로, 두 모달리티(modality)에 대한 공통 임베딩(embedding)을 학습합니다.&#x20;
+(1) CLIP과 같은 표현 학습 모델(representation-learning model)로, 두 모달리티(modality)에 대한 공통 임베딩(embedding)을 학습합니다.
 
 (2) {vision, text} → {text} 형태의 시각 언어 모델로, 시각과 언어를 입력으로 받아 자유 형식 텍스트를 제공합니다.
 
@@ -40,13 +40,13 @@ description: >-
 
 ### 실험 결과
 
-우리의 실험은 RT-2의 실제 환경 일반화(real-world generalization)와 창발적 능력(emergent capability)에 초점을 맞추며, 다음 질문에 답하고자 합니다.&#x20;
+우리의 실험은 RT-2의 실제 환경 일반화(real-world generalization)와 창발적 능력(emergent capability)에 초점을 맞추며, 다음 질문에 답하고자 합니다.
 
-1\) RT-2는 학습된 작업에서 어떻게 수행되며, 더 중요하게는 새로운 객체, 배경, 환경에 대해 어떻게 일반화되는가?&#x20;
+1\) RT-2는 학습된 작업에서 어떻게 수행되며, 더 중요하게는 새로운 객체, 배경, 환경에 대해 어떻게 일반화되는가?
 
-2\) RT-2의 창발적 능력을 관찰하고 측정할 수 있는가?&#x20;
+2\) RT-2의 창발적 능력을 관찰하고 측정할 수 있는가?
 
-3\) 일반화 능력이 매개변수 수와 다른 설계 결정에 따라 어떻게 달라지는가?&#x20;
+3\) 일반화 능력이 매개변수 수와 다른 설계 결정에 따라 어떻게 달라지는가?
 
 4\) RT-2가 비전-언어 모델과 유사하게 사고의 연쇄(chain-of-thought) 추론의 징후를 보일 수 있는가?
 
@@ -74,7 +74,21 @@ RT-2는 학습된 작업에서는 RT-1과 유사한 성능을 보이지만, 새�
 
 ***
 
+### Citation
+
+```bibtex
+@misc{brohan2023rt2visionlanguageactionmodelstransfer,
+      title={RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control}, 
+      author={Anthony Brohan and Noah Brown and Justice Carbajal and Yevgen Chebotar and Xi Chen and Krzysztof Choromanski and Tianli Ding and Danny Driess and Avinava Dubey and Chelsea Finn and Pete Florence and Chuyuan Fu and Montse Gonzalez Arenas and Keerthana Gopalakrishnan and Kehang Han and Karol Hausman and Alexander Herzog and Jasmine Hsu and Brian Ichter and Alex Irpan and Nikhil Joshi and Ryan Julian and Dmitry Kalashnikov and Yuheng Kuang and Isabel Leal and Lisa Lee and Tsang-Wei Edward Lee and Sergey Levine and Yao Lu and Henryk Michalewski and Igor Mordatch and Karl Pertsch and Kanishka Rao and Krista Reymann and Michael Ryoo and Grecia Salazar and Pannag Sanketi and Pierre Sermanet and Jaspiar Singh and Anikait Singh and Radu Soricut and Huong Tran and Vincent Vanhoucke and Quan Vuong and Ayzaan Wahid and Stefan Welker and Paul Wohlhart and Jialin Wu and Fei Xia and Ted Xiao and Peng Xu and Sichun Xu and Tianhe Yu and Brianna Zitkovich},
+      year={2023},
+      eprint={2307.15818},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2307.15818}, 
+}
+```
+
 ### 참고 자료
 
-{% embed url="https://arxiv.org/pdf/2307.15818" %}
-
+* [**\[Paper\]** RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control](https://arxiv.org/abs/2307.15818)
+* [**\[DeepMind Blog\]** RT-2: New model translates vision and language into action](https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/)

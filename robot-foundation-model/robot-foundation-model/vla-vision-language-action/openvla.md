@@ -58,7 +58,7 @@ OpenVLA는 이 두 문제를 모두 해결한 **최초의 완전 오픈소스 �
 
 OpenVLA의 아키텍처는 다음 세 부분으로 구성됩니다:
 
-&#x20;_그림 1: OpenVLA 모델 아키텍처. 이미지 관찰과 언어 지시를 입력받아 7차원 로봇 제어 행동을 예측합니다._
+_그림 1: OpenVLA 모델 아키텍처. 이미지 관찰과 언어 지시를 입력받아 7차원 로봇 제어 행동을 예측합니다._
 
 **1. 비전 인코더: 두 개의 눈으로 보는 세상**
 
@@ -168,7 +168,7 @@ OpenVLA의 성능을 세 가지 질문을 통해 평가했습니다:
 
 **결과**:
 
-&#x20;_그림 2: BridgeData V2 WidowX 로봇 평가 결과. OpenVLA는 모든 범주에서 높은 성능을 보이며 RT-2-X를 능가합니다._
+_그림 2: BridgeData V2 WidowX 로봇 평가 결과. OpenVLA는 모든 범주에서 높은 성능을 보이며 RT-2-X를 능가합니다._
 
 | 모델               | BridgeData V2 평균 성공률 | Google 로봇 평균 성공률 |
 | ---------------- | -------------------- | ---------------- |
@@ -206,7 +206,7 @@ OpenVLA의 성능을 세 가지 질문을 통해 평가했습니다:
 
 **결과**:
 
-&#x20;_그림 3: 새로운 로봇 설정에 대한 적응 성능. OpenVLA는 다양한 작업에서 균형 잡힌 성능을 보입니다._
+_그림 3: 새로운 로봇 설정에 대한 적응 성능. OpenVLA는 다양한 작업에서 균형 잡힌 성능을 보입니다._
 
 **주요 발견**:
 
@@ -390,10 +390,23 @@ OpenVLA는 "Transformer의 GPT" 같은 역할을 VLA 분야에서 할 잠재력�
 
 ***
 
+### Citation
+
+```bibtex
+@misc{kim2024openvlaopensourcevisionlanguageactionmodel,
+      title={OpenVLA: An Open-Source Vision-Language-Action Model}, 
+      author={Moo Jin Kim and Karl Pertsch and Siddharth Karamcheti and Ted Xiao and Ashwin Balakrishna and Suraj Nair and Rafael Rafailov and Ethan Foster and Grace Lam and Pannag Sanketi and Quan Vuong and Thomas Kollar and Benjamin Burchfiel and Russ Tedrake and Dorsa Sadigh and Sergey Levine and Percy Liang and Chelsea Finn},
+      year={2024},
+      eprint={2406.09246},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2406.09246}, 
+}
+```
+
 ### 참고 자료
 
-* 📄 **논문**: [OpenVLA: An Open-Source Vision-Language-Action Model](https://arxiv.org/abs/2406.09246)
-* 💻 **코드**: [https://github.com/openvla/openvla](https://openvla.github.io)
-* 🤗 **모델**: HuggingFace에서 다운로드 가능
-* 🎥 **데모**: [https://openvla.github.io](https://openvla.github.io)
-
+* [**\[Paper\]** OpenVLA: An Open-Source Vision-Language-Action Model](https://arxiv.org/abs/2406.09246)
+* [**\[Project\]** https://openvla.github.io/](https://openvla.github.io/)
+* [**\[Github\]** openvla/openvla](https://github.com/openvla/openvla)
+* [**\[HuggingFace\]** openvla](https://huggingface.co/openvla)

@@ -14,28 +14,34 @@ AI가 점점 똑똑해지고 있습니다. GPT-4는 코딩 문제를 풀고, Cla
 
 ***
 
-### Physical AI가 필요한 이유
+### 개요
 
-#### Physical AI란 무엇인가?
+<figure><img src="../../../.gitbook/assets/image_000001_a2634f22abe419d38b6cb788ca07346b2de62cdc23b3dd0955cb5d6dfba3d7c4.png" alt=""><figcaption></figcaption></figure>
 
-Physical AI는 물리 세계와 상호작용하도록 설계된 AI 시스템을 의미합니다. 로봇, 자율주행 차량, 드론 등이 여기에 해당합니다. 이러한 시스템들은 단순히 정보를 처리하는 것을 넘어서 실제 환경에서 움직이고, 물체를 조작하며, 안전하게 작업을 수행해야 합니다.
+> Cosmos-Reason1에는 Physical AI SFT 및 Physical AI RL을 포함하여 두 단계로 훈련된 7B 및 56B의 두 가지 Multimodal LLM이 포함되어 있습니다. 또한 물리적 상식(Physical Common Sense)과 구체화된 추론(Embodied Reasoning)을 위한 두 가지 온톨로지를 정의하고, 모델의 Physical AI 추론 기능을 평가하기 위해 두 가지 벤치마크를 구축합니다.
 
-전통적인 AI 모델들이 탁월한 성과를 보이는 영역—수학, 코딩, 텍스트 생성—은 모두 구조화되고 결정론적인 환경입니다. 수학 문제는 명확한 정답이 있고, 코드는 논리적으로 검증 가능합니다. 하지만 물리 세계는 다릅니다. 불확실하고, 동적이며, 복잡한 물리 법칙에 지배됩니다.
+Cosmos-Reason1은 **물리적 세계를 이해하고 추론하기 위해 설계된 멀티모달 대규모 언어 모델(Multimodal Large Language Model)**&#xC785;니다. 이 모델은 물리적 상식 추론(Physical Common Sense Reasoning)과 구체화된 추론(Embodied Reasoning)이라는 두 가지 핵심 능력을 갖추고 있으며, 긴 사고 체인(Long Chain-of-Thought) 프로세스를 통해 복잡한 물리 현상을 설명할 수 있습니다. NVIDIA가 개발한 이 모델 제품군은 7B와 56B의 두 가지 규모로 제공되며, 감독학습(Supervised Fine-Tuning, SFT)과 강화학습(Reinforcement Learning, RL)의 두 단계 훈련을 통해 물리 AI 능력을 획기적으로 향상합니다.
 
-#### 기존 접근법의 한계
+### 문제 정의
 
-초기 연구들은 기존 LLM이나 VLM(Vision-Language Model)을 로봇 시스템에 그대로 적용하려 했습니다. 예를 들어:
+최근 대규모 언어 모델(LLM)의 발전은 코딩과 수학 같은 복잡한 문제 해결에서 놀라운 성과를 보였습니다. 그러나 이러한 모델들은 물리적 세계에 대한 지식을 실제 상호작용과 연결시키지 못한다는 약점을 가지고 있습니다.
+
+초기 연구들은 기존 LLM이나 VLM(Vision-Language Model)을 로봇 시스템에 그대로 적용하려 했습니다. 예를 들어,
 
 1. **Zero-shot Task Planning**: LLM에게 "식탁을 차리세요"라고 하면, LLM이 자연어로 계획을 생성합니다. 하지만 이런 계획들은 물리적 제약을 고려하지 않아 실행 불가능한 경우가 많았습니다.
 2. **Code as Policies**: LLM이 로봇 제어 코드를 직접 생성하는 방식입니다. 그러나 LLM은 물리 세계에 대한 직관이 부족해 비현실적인 동작을 생성하곤 했습니다.
 
 이런 한계는 근본적인 문제에서 비롯됩니다: **모델이 물리적 상식(physical common sense)을 갖고 있지 않다는 것입니다.**
 
-***
+로봇이나 자율주행 차량 같은 물리 AI 시스템이 지능적으로 행동하려면 단순히 텍스트 지식만으로는 부족합니다. 이들은 다음 세 가지를 필요로 합니다:
+
+1. **물리적 상식**: 세상이 어떻게 움직이는지에 대한 직관적 이해
+2. **구체화된 추론**: 특정 로봇이나 인간이 주어진 상황에서 어떤 행동을 취해야 하는지에 대한 판단
+3. **인과관계 이해**: 내 행동이 물리적 세계에 어떤 영향을 미칠 것인지에 대한 예측
+
+기존의 비전-언어 모델(Vision-Language Model, VLM)은 이러한 물리적 추론을 충분히 수행하지 못합니다. 따라서 NVIDIA 연구팀은 물리 AI 특화 모델을 개발하기로 결정했습니다.
 
 ### Cosmos-Reason1의 핵심 아이디어
-
-#### 두 가지 필수 능력 정의
 
 NVIDIA 연구팀은 Physical AI를 위해 두 가지 핵심 능력을 정의했습니다:
 
@@ -49,11 +55,11 @@ NVIDIA 연구팀은 Physical AI를 위해 두 가지 핵심 능력을 정의했�
 * **Time (시간)**: 시간에 따라 전개되는 행동과 사건 (예: 사건의 순서, 인과관계, 계획)
 * **Fundamental Physics (기본 물리)**: 물체의 속성과 핵심 물리 법칙 (예: 역학, 전자기학, 열역학)
 
-이 세 범주는 다시 16개의 세부 하위 범주로 나뉩니다. 예를 들어, Space는 Relationship(관계), Plausibility(타당성), Affordance(행위가능성), Environment(환경)로 세분화됩니다.
+이 세 범주는 다시 16개의 세부 하위 범주로 나뉩니다.&#x20;
 
 **2. Embodied Reasoning (체화된 추론)**
 
-Embodied reasoning은 물리 세계와 실제로 상호작용하는 능력입니다. 단순히 이해하는 것을 넘어, 행동을 계획하고 실행해야 합니다. 연구팀은 네 가지 핵심 능력을 정의했습니다:
+Embodied reasoning은 물리 세계와 실제로 상호작용하는 능력입니다. 단순히 이해하는 것을 넘어, 행동을 계획하고 실행해야 합니다. 연구팀은 네 가지 핵심 능력을 정의했습니다.
 
 * **복잡한 감각 입력 처리**: 불완전하고 애매한 시각 정보에서 의미 있는 패턴 추출
 * **행동 효과 예측**: "로봇 팔이 이 물체를 잡으면 어떻게 될까?" 같은 인과 관계 이해
@@ -62,9 +68,13 @@ Embodied reasoning은 물리 세계와 실제로 상호작용하는 능력입니
 
 ### 모델 아키텍처
 
-#### 멀티모달 구조
+<figure><img src="../../../.gitbook/assets/image_000003_27d12686c4e0f1bd9b053b85ecb4ff405a2c86d154d92ed1e52bc45f61f1ccfa.png" alt=""><figcaption></figcaption></figure>
 
-Cosmos-Reason1은 decoder-only 아키텍처를 채택했습니다. 이는 LLaVA와 유사한 방식으로, 모든 모달리티(이미지, 비디오, 텍스트)를 통합된 방식으로 처리합니다.
+> 입력 비디오와 입력 텍스트 프롬프트가 주어지면 비디오는 비전 인코더와 프로젝터에 의해 비디오 토큰으로 LLM의 토큰 내장 공간에 투영됩니다. 텍스트 토큰은 비디오 토큰과 연결되어 LLM 백본, 고밀도 Transformer 또는 하이브리드 Mamba-MLP-Transformer 아키텍처에 공급됩니다. 이 모델은 긴 CoT 프로세스를 통해 응답을 출력할 수 있습니다.
+
+#### 다중 모드 아키텍처
+
+기존 텍스트 전용 LLM 백본 및 비전 인코더를 사용하여 다중 모드 LLM(대형 언어 모델)을 구축하기 위한 다양한 아키텍처 설계가 있습니다. Cosmos-Reason1은 일반적으로 사용되는 아키텍처인 decoder-only 전용 아키텍처를 채택했습니다. 이는 LLaVA와 유사한 방식으로, 모든 모달리티(이미지, 비디오, 텍스트)를 통합된 방식으로 처리합니다.
 
 구체적인 구조는 다음과 같습니다:
 
@@ -72,7 +82,21 @@ Cosmos-Reason1은 decoder-only 아키텍처를 채택했습니다. 이는 LLaVA�
 2. **Projector**: 2×2 PixelShuffle 다운샘플링을 통해 시각 토큰을 256개로 줄이고, 2-layer MLP로 텍스트 토큰 임베딩 공간에 정렬합니다.
 3. **LLM Backbone**: Cosmos-Reason1-7B는 Qwen2.5-VL 기반의 dense Transformer를, 56B는 Nemotron-H 기반의 hybrid Mamba-MLP-Transformer를 사용합니다.
 
-#### Hybrid Mamba-MLP-Transformer의 장점
+#### 백본 아키텍처: Mamba-MLP-Transformer 하이브리드
+
+<figure><img src="../../../.gitbook/assets/image_000004_1fcf02d8b9bc18f2ec11be66df5926e53a2b1d0877e6ff71410b9bab41b62671.png" alt=""><figcaption></figcaption></figure>
+
+> Cosmos-Reason1-56B에 ​​사용된 하이브리드 Mamba-MLP-Transformer 백본 아키텍처를 나타낸 그림입니다. Transformer 블록은 Self-attention 레이어와 MLP 레이어로 구성됩니다. 그림 상단에는 Alternating Mamba-MLP 모듈의 예시도 함께 보여줍니다.
+
+기존의 순수 트랜스포머 기반 모델과 달리, Cosmos-Reason1은 **Mamba-MLP-Transformer 하이브리드** 백본을 사용합니다.
+
+* **Mamba**: 효율적인 시퀀스 모델링을 위한 상태 공간 모델(State Space Model)
+* **MLP**: 다층 퍼셉트론(Multi-Layer Perceptron)으로 비선형 변환 수행
+* **Transformer**: 어텐션(Attention) 메커니즘을 통한 장거리 의존성 포착
+
+이 조합은 계산 효율성 증가, 메모리 사용량 감소, 긴 추론 체인에서의 성능 향상에 장점이 있습니다.
+
+**Hybrid Mamba-MLP-Transformer의 장점**
 
 Transformer는 self-attention 메커니즘 때문에 시퀀스 길이의 제곱에 비례하는 계산 복잡도(O(n²))를 가집니다. 긴 비디오를 처리할 때 이는 치명적인 병목이 됩니다.
 
@@ -82,18 +106,30 @@ Mamba 아키텍처는 selective state space model을 활용해 선형 복잡도(
 
 ### 학습 방법론
 
-Cosmos-Reason1은 두 단계로 학습됩니다: **Physical AI SFT(Supervised Fine-Tuning)**&#xC640; **Physical AI RL(Reinforcement Learning)**&#xC785;니다.
+Cosmos-Reason1은 두 단계로 학습됩니다.
+
+1. **Physical AI SFT(Supervised Fine-Tuning)**
+2. **Physical AI RL(Reinforcement Learning)**
 
 #### Stage 1: Physical AI SFT
 
+사전 학습된 VLM 모델(예: Qwen2.5-VL 또는 Nemotron-H-VLM)에서 시작하여, Physical AI 특화 데이터로 Fine-tuning 합니다. 이 단계에서 모델은 물리적 개념어휘(vocabulary)를 학습하고, 물리 현상을 설명하는 방식을 익힙니다.
+
 SFT 단계에서는 약 400만 개의 비디오-텍스트 쌍을 큐레이션했습니다. 이 데이터는 다음을 포함합니다:
 
-**Physical Common Sense 데이터**
+**Physical Common Sense SFT**
 
-1. **Free-form Questions**: 9.9K개 비디오에서 99K개의 이해(understanding) 질문과 59.4K개의 추론(reasoning) 질문 생성
-2. **Multiple Choice Questions**: 1.2M개 비디오에서 2.4M개 이해 질문과 600K개 추론 질문 생성
+* 물리적 상식 질문-답변 쌍 (약 70,000개)
+* 구체화된 추론 예제 (약 35,000개)
+* 직관적 물리학 시나리오 (약 30,000개)
 
-데이터 생성 파이프라인:
+**Embodied Reasoning SFT**
+
+데이터 생성 파이프라인은 다음과 같습니다.
+
+<figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+
+> Embodied Reasoning SFT 데이터 큐레이션 파이프라인: (1) 하위 작업에 해당하는 짧은 수평선 세그먼트를 추출하고, (2) 상태-동작 컨텍스트를 얻기 위해 추출된 클립에 캡션을 추가하고, (3) "다음 타당한 하위 작업 예측"을 위한 QA 쌍을 관리하고, (4) R1에게 추론을 유도하기 위한 질문과 캡션을 제공하고, (5) 유효한 SFT 샘플을 얻기 위해 추론 추적을 정리하고 다시 작성합니다.
 
 * 고품질 비디오 큐레이션 (인간 선호도 기반)
 * 상세한 캡션 작성 (인간 또는 VLM 사용)
@@ -101,86 +137,49 @@ SFT 단계에서는 약 400만 개의 비디오-텍스트 쌍을 큐레이션했
 * DeepSeek-R1을 사용해 추론 trace 추출
 * 규칙 기반 정제 및 재작성
 
-**Embodied Reasoning 데이터**
-
-연구팀은 다양한 embodiment에서 데이터를 수집했습니다:
-
-* **BridgeData V2**: 로봇 팔 조작 (129.2K 이해 + 129.1K 추론)
-* **RoboVQA**: 로봇 VQA 데이터셋 (218.5K 이해 + 920K 추론)
-* **AgiBot**: 휴머노이드 로봇 (19.4K 각)
-* **HoloAssist**: 1인칭 시점 인간 행동 (136.3K 각)
-* **AV**: 자율주행 차량 (12.4K 각)
-
-세 가지 핵심 속성에 초점을 맞췄습니다:
-
-1. Task-completion verification (작업 완료 여부 판단)
-2. Action affordance (행동 가능성 평가)
-3. Next plausible action prediction (다음 행동 예측)
-
-**Intuitive Physics 데이터**
-
-자기 지도 학습으로 생성 가능한 데이터:
-
-1. **Spatial Puzzles**: 이미지를 2×2 패치로 나누고 섞어서, 올바른 위치를 추론하도록 학습 (11K 샘플)
-2. **Arrow of Time (AoT)**: 비디오를 정방향/역방향으로 재생하고, 물리 법칙에 따라 어느 것이 올바른지 판단 (30K 샘플)
-3. **Object Permanence**: 시뮬레이션 환경에서 카메라가 움직일 때 물체가 예상치 않게 사라지는지 감지 (10K 샘플)
-
 #### Stage 2: Physical AI RL
 
-수학이나 코딩과 달리 Physical AI에서는 정답이 명확하지 않습니다. "다음 행동은 무엇인가?"라는 질문에는 여러 타당한 답이 있을 수 있습니다. 이를 해결하기 위해 연구팀은 \*\*규칙 기반의 검증 가능한 보상(rule-based verifiable rewards)\*\*을 설계했습니다.
+SFT 후에는 강화학습을 통해 모델을 더욱 개선합니다. 수학이나 코딩과 달리 Physical AI에서는 정답이 명확하지 않습니다. "다음 행동은 무엇인가?"라는 질문에는 여러 타당한 답이 있을 수 있습니다. 이를 해결하기 위해 연구팀은 GRPO (Group Relative Policy Optimization) 알고리즘 기반의 규칙 기반의 검증 가능한 보상(rule-based verifiable rewards) 을 설계했습니다. 이 단계에서 모델은 미묘한 물리 원리, 예를 들어 시간의 화살표(arrow of time)나 물체의 영속성(object permanence)을 습득합니다.
 
-**보상 설계**
-
-1. **Accuracy Reward**: Multiple choice question에서 정답을 맞췄는지 문자열 매칭으로 검증
-2. **Format Reward**: 추론 과정을 `<think></think>` 태그로, 답변을 `<answer></answer>` 태그로 감싸는지 확인
-
-**데이터 구성**
-
-* Physical Common Sense: 5,133 MCQ (easy/hard subset으로 구분)
-* Embodied Reasoning: 각 데이터 소스에서 200-250 샘플
-* Intuitive Physics: 24,079 샘플 (가장 확장 가능)
-
-**학습 설정**
-
-* 알고리즘: GRPO (Group Relative Policy Optimization)
-* 각 질문당 9개 응답 샘플링
-* KL penalty coefficient: 0.005
-* 500 iteration 학습
-
-연구팀은 완전히 비동기적이고 내결함성을 가진 RL 학습 프레임워크를 개발했습니다. 기존 colocated 프레임워크 대비 약 160% 효율 향상을 달성했습니다.
+* **리워드 설계**: 물리적으로 타당한 답변에 높은 보상 부여
+  * **Accuracy Reward**: Multiple choice question에서 정답을 맞췄는지 문자열 매칭으로 검증
+  * **Format Reward**: 추론 과정을 `<think></think>` 태그로, 답변을 `<answer></answer>` 태그로 감싸는지 확인
+* **검증 가능한 규칙**: 규칙 기반 보상으로 신뢰성 확보
+* **정책 최적화**: 모델이 물리적 올바름을 최대화하도록 유도
 
 ***
 
-### 벤치마크 구축
+### 데이터와 벤치마크
 
 공정한 평가를 위해 연구팀은 새로운 벤치마크를 구축했습니다.
 
-#### Physical Common Sense 벤치마크
+#### 데이터
 
-426개 비디오에서 604개 질문을 수작업으로 큐레이션:
+**1. 물리적 상식 데이터**
 
-* Space: 80개 (13.25%)
-* Time: 298개 (49.33%)
-* Fundamental Physics: 226개 (37.4%)
+모델 기반 생성 파이프라인을 통해 물리적 상식 질문 70,000개를 수집
 
-#### Embodied Reasoning 벤치마크
+* 형식: 비디오 또는 이미지 + 예/아니오 또는 객관식 질문
+* 예제: "이 물체는 물에 떠있을까?"
+* 난이도: 기초부터 고급까지 다양한 수준
 
-610개 질문을 6개 데이터셋에서 수집:
+**2. 구체화된 추론 (Embodied Reasoning) 데이터**
 
-* BridgeData V2, RoboVQA, RoboFail: 로봇 팔
-* AgiBot: 휴머노이드 로봇
-* HoloAssist: 인간 (1인칭 시점)
-* AV: 자율주행 차량
+로봇(예: AgiBot)의 실제 상호작용 비디오에서 35,000개의 데이터 수집
 
-각 100개 질문으로 구성되며, 모두 MCQ 형식입니다.
+* 각 프레임에서 로봇이 취할 수 있는 다음 행동 추론
+* 자연 행위자(인간)의 행동 설명 30,000개
+* 형식: 비디오 + "로봇/사람이 다음에 어떻게 행동할까?"
 
-#### Intuitive Physics 벤치마크
+**3. 직관적 물리학 데이터**
 
-각 작업당 100개 질문:
+세 가지 핵심 물리 개념에 대한 특화 데이터
 
-* Arrow of Time
-* Spatial Puzzle
-* Object Permanence
+* **시간의 화살표** (Arrow of Time): 비디오가 앞으로 재생되는지 역으로 재생되는지 판단
+* **공간 퍼즐** (Spatial Puzzles): 물체 배치와 위치 이해
+* **물체 영속성** (Object Permanence): 가려진 물체의 위치 추론
+
+***
 
 ### 실험 결과
 
@@ -232,7 +231,7 @@ Cosmos-Reason1-7B는 SFT만으로도 평균 74.5%를 달성하며, 32.4%p의 엄
 
 RL 학습은 모든 벤치마크에서 추가적인 성능 향상을 가져왔습니다. 특히 Intuitive Physics에서 7.0%p의 큰 개선이 있었습니다.
 
-**흥미로운 발견**: RL 이후 모델은 애매한 질문에 대해 제공된 선택지를 모두 거부하는 법을 학습했습니다. 예를 들어, 자율주행 시나리오에서 제시된 모든 선택지가 물리적으로 불가능한 경우, 모델은 각 선택지를 신중히 평가한 후 "none"이라고 답하며 보수적인 판단을 내렸습니다.
+> **흥미로운 발견**: RL 이후 모델은 애매한 질문에 대해 제공된 선택지를 모두 거부하는 법을 학습했습니다. 예를 들어, 자율주행 시나리오에서 제시된 모든 선택지가 물리적으로 불가능한 경우, 모델은 각 선택지를 신중히 평가한 후 "none"이라고 답하며 보수적인 판단을 내렸습니다.
 
 ***
 
@@ -295,94 +294,61 @@ Cosmos-Reason1은 다음 분야에서 즉시 활용 가능합니다:
 
 ***
 
-### 한계점과 개선 방향
-
-#### 현재 한계
-
-**1. 일부 작업에서 Transformer 대비 낮은 성능**
-
-* 특정 벤치마크에서 0.5-1% 낮은 성능
-* 통계적으로 유의미한 수준은 아님
-
-**2. 생태계 부족**
-
-* 새로운 아키텍처이므로 pre-trained model, library 부족
-* 커뮤니티 지원이 Transformer 대비 약함
-
-**3. RoboFail 벤치마크 정체**
-
-* 매우 어려운 affordance 시나리오에서 개선 없음
-* 더 대표적인 학습 데이터 필요
-
-**4. 짧은 시퀀스에서 비효율**
-
-* 512 토큰 미만에서는 Transformer보다 느릴 수 있음
-* 하지만 Physical AI는 일반적으로 긴 컨텍스트 필요
-
-#### 향후 연구 방향
+### 향후 연구 방향
 
 **1. 상호작용을 통한 학습**
 
-* 현재는 수동적 관찰만 다룸
+* 현재 모델은 기초적인 물리 원리를 이해하지만, 다음과 같은 고급 개념까지 확장 가능합니다:
+  * 동역학(dynamics): 물체의 움직임 예측
+  * 에너지 보존: 폐쇄 시스템에서의 에너지 변환
+  * 분자/양자 수준의 현상: 화학반응, 물질의 상태 변화
 * 능동적 탐험과 피드백 학습 추가 필요
+  * 시뮬레이션 환경에서 훈련한 모델을 실제 로봇에 적용
+  * 안전한 로봇 정책 학습
+  * 현실의 물리 엔진과 시뮬레이션 간 차이 극복 필요
 
 **2. 멀티모달 확장**
 
 * 현재는 비디오 중심
 * 촉각, 청각, 힘 센서 등 다양한 센서 통합
 
-**3. Transformer와의 하이브리드 최적화**
+**3. 실시간 추론 최적화**
 
-* 어떤 layer를 Mamba로, 어떤 layer를 Transformer로?
-* 작업별 최적 비율 탐구
-
-**4. 더 긴 시퀀스 처리**
-
-* 현재 32 프레임 (최대 16초)
-* 전체 에피소드(수분\~수시간) 처리 능력 개발
-
-**5. 실시간 추론 최적화**
-
-* 로봇은 즉각적인 의사결정 필요
+* 현재 모델은 주로 오프라인 분석에 사용되지만, 로봇은 즉각적인 의사결정 필요
 * 추론 속도와 품질의 트레이드오프 연구
 
 ***
 
 ### 결론
 
-Cosmos-Reason1은 Physical AI를 위한 추론 모델 개발에서 중요한 이정표입니다. 세 가지 핵심 성과를 달성했습니다:
+Cosmos-Reason1은 물리적 세계를 이해하고 추론하는 AI 시스템의 새로운 가능성을 제시합니다. 명확한 온톨로지, 체계적인 데이터 수집, 효율적인 아키텍처, 그리고 강화학습을 통한 최적화를 결합함으로써, 기존 모델보다 훨씬 나은 물리 이해 능력을 달성했습니다.
 
-**1. 체계적 프레임워크**
+이 연구의 가장 큰 가치는 다음 두 가지입니다:
 
-* Physical common sense와 embodied reasoning을 명확히 정의
-* 향후 연구를 위한 ontology 제공
+1. **개념적 기여**: 물리 AI의 근본 능력을 체계적으로 정의하고 측정할 수 있는 프레임워크 제공
+2. **실용적 기여**: 오픈소스 모델, 데이터, 코드를 통해 커뮤니티가 이를 바탕으로 더욱 발전된 시스템을 만들 수 있도록 지원
 
-**2. 대폭적인 성능 향상**
-
-* 기반 VLM 대비 common sense에서 +6.9%, embodied reasoning에서 +11.0%
-* RL로 추가 +5.0% 향상
-
-**3. 기존 모델의 약점 발견**
-
-* 최첨단 VLM들도 기본 물리 추론에서 실패
-* Intuitive Physics에서 +32.4% 개선으로 이 격차 해소
-
-**핵심 포인트**
-
-* **물리적 상식이 중요하다**: 텍스트 추론 능력만으로는 Physical AI 구축 불가
-* **검증 가능한 보상 설계 가능**: MCQ와 자기 지도 학습으로 RL 적용 가능
-* **확장 가능한 데이터**: Intuitive Physics는 거의 무한대로 생성 가능
-* **아직 갈 길이 멀다**: RoboFail 같은 어려운 시나리오에서는 여전히 개선 필요
+로봇, 자율주행차, 가정용 AI 등이 우리 생활 속에 점점 더 침투하는 현재, Cosmos-Reason1과 같은 기초 기술의 개발은 매우 중요합니다. 이 모델이 제시하는 길을 따라, 앞으로 수년간 더욱 정교한 물리 AI 시스템이 등장할 것으로 기대됩니다.
 
 Cosmos-Reason1은 Physical AI 분야의 새로운 가능성을 열었습니다. 코드와 모델 가중치를 NVIDIA Open Model License 하에 공개하여, 커뮤니티가 이 연구를 발전시킬 수 있도록 했습니다. 앞으로 Physical AI 시스템이 인간처럼 물리 세계를 이해하고 상호작용하는 날이 점점 가까워지고 있습니다.
 
 ***
 
+### Citation
+
+```bibtex
+@misc{nvidia2025cosmosreason1physicalcommonsense,
+      title={Cosmos-Reason1: From Physical Common Sense To Embodied Reasoning}, 
+      author={NVIDIA and : and Alisson Azzolini and Junjie Bai and Hannah Brandon and Jiaxin Cao and Prithvijit Chattopadhyay and Huayu Chen and Jinju Chu and Yin Cui and Jenna Diamond and Yifan Ding and Liang Feng and Francesco Ferroni and Rama Govindaraju and Jinwei Gu and Siddharth Gururani and Imad El Hanafi and Zekun Hao and Jacob Huffman and Jingyi Jin and Brendan Johnson and Rizwan Khan and George Kurian and Elena Lantz and Nayeon Lee and Zhaoshuo Li and Xuan Li and Maosheng Liao and Tsung-Yi Lin and Yen-Chen Lin and Ming-Yu Liu and Xiangyu Lu and Alice Luo and Andrew Mathau and Yun Ni and Lindsey Pavao and Wei Ping and David W. Romero and Misha Smelyanskiy and Shuran Song and Lyne Tchapmi and Andrew Z. Wang and Boxin Wang and Haoxiang Wang and Fangyin Wei and Jiashu Xu and Yao Xu and Dinghao Yang and Xiaodong Yang and Zhuolin Yang and Jingxu Zhang and Xiaohui Zeng and Zhe Zhang},
+      year={2025},
+      eprint={2503.15558},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2503.15558}, 
+}
+```
+
 ### **참고 자료**
 
-* **논문**: [https://arxiv.org/pdf/2503.15558](https://arxiv.org/pdf/2503.15558)
-* **코드**: [https://github.com/nvidia-cosmos/cosmos-reason1](https://github.com/nvidia-cosmos/cosmos-reason1)
-
-
-
-\#PhysicalAI #EmbodiedAI #MultimodalLLM #NVIDIA #Robotics #AutonomousVehicles #MachineLearning #DeepLearning #ReinforcementLearning #ComputerVision
+* [**\[Paper\]** Cosmos-Reason1: From Physical Common Sense To Embodied Reasoning](https://arxiv.org/abs/2503.15558)
+* [**\[Github\]** nvidia-cosmos/cosmos-reason1](https://github.com/nvidia-cosmos/cosmos-reason1)
